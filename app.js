@@ -18,18 +18,22 @@ app.use(express.static("assets"));
 
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 
-app.use("/css", express.static(__dirname + "/node_modules/jquery/jquery.js"));
+let opaco = ""
+
+app.use("/js", express.static(__dirname + "/node_modules/jquery/jquery.js"));
 
 app.get("/", (req, res) => {
     res.render("main", {
         layout: "main",
-        productos: [
-            "banana",
-            "cebollas",
-            "lechuga",
-            "papas",
-            "pimenton",
-            "tomate",
+        producto: [
+            "Banana",
+            "Cebollas",
+            "Lechuga",
+            "Papas",
+            "Pimenton",
+            "Tomate",
         ]
     })
-})
+});
+
+let productos = []
