@@ -18,9 +18,7 @@ app.use(express.static("assets"));
 
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 
-let opaco = ""
-
-app.use("/js", express.static(__dirname + "/node_modules/jquery/jquery.js"));
+app.use("/js", express.static(__dirname + "/node_modules/jquery/dist"));
 
 app.get("/", (req, res) => {
     res.render("main", {
@@ -35,5 +33,3 @@ app.get("/", (req, res) => {
         ]
     })
 });
-
-let productos = []

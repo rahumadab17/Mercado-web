@@ -7,10 +7,54 @@
     <title>Mercado Web</title>
 </head>
 <body>
-    {{> dashboard}}
+    <nav>
+        {{> menu }}
+    </nav>
+    <div>
+        {{> dashboard}}
+    </div>
+
+
 
 
     <script src="https://kit.fontawesome.com/3e44e50226.js" crossorigin="anonymous"></script>
-    <script src="/jquery/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="/js/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#producto').click(function(){
+                let productos = JSON.parse(localStorage.getItem("productos"))
+                let exist = productos.find( p => p === this.id)
+                if(!exist){
+                    productos.push(this.id)
+                    localStorage.setItem('productos', JSON.stringify(productos))
+                }
+            })
+
+            $('#producto').dblclick(function(){
+                $(this).removeClass('opacity-50')
+                let productos = JSON.parse(localStorage.getItem("productos"))
+                productos = productos.filter( p => p !== this.id)
+                localStorage.setItem('productos', JSON.stringify(productos))
+            })
+
+            if (!localStorage.getItem("productos")) {
+                let productos = [];
+                localStorage.setItem('productos', JSON.stringify(productos));
+            }
+
+            $('button').click(function(){
+                let mostrarProductos = JSON.parse(localStorage.getItem("productos"));
+                
+            })
+
+
+
+
+
+
+
+        });
+    </script>
 </body>
 </html>
