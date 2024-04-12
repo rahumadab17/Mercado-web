@@ -1,1 +1,9 @@
-{{> mainSection}}
+<div class="container">
+    <div class="row">
+        {{#each producto}}
+        <div class="col-4">
+            <h4 class="text-center">{{ this }}</h4>
+        </div>
+        {{/each}}
+    </div>
+</div>
