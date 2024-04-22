@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars')
 const port = 3000;
 
 app.listen(port, () => {
@@ -20,16 +21,20 @@ app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
 
 app.use("/js", express.static(__dirname + "/node_modules/jquery/dist"));
 
+Handlebars.registerHelper('lower', function (nombreProducto){
+    return nombreProducto.toLowerCase();
+})
+
 app.get("/", (req, res) => {
     res.render("main", {
         layout: "main",
-        producto: [
+        productos: [
             "Banana",
             "Cebollas",
             "Lechuga",
             "Papas",
             "Pimenton",
             "Tomate",
-        ]
+        ],        
     })
 });
