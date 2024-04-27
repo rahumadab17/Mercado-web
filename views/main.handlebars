@@ -7,11 +7,8 @@
     <title>Mercado Web</title>
 </head>
 <body>
-
-
-
-
-
+    {{> Menu}}
+    {{> MainSection}}
 
 
 
@@ -24,8 +21,32 @@
     <script src="/js/jquery.js"></script>
     <script>
         $(document).ready(function(){
-            
-        })
+            $(".producto").click(function (){
+                $(this).removeClass('opacity-50');
+                let productoSeleccionado = JSON.parse(localStorage.getItem("productosEnCarrito"));
+                productoSeleccionado = productoSeleccionado.filter(e => e !== this.id);
+                localStorage.setItem('productosEnCarrito', JSON.stringify(productoSeleccionado));
+            });
+
+            $(".producto").dblclick(function(){
+                $(this).addClass('opacity-50');
+                let productoSeleccionado = JSON.parse(localStorage.getItem("productosEnCarrito"));
+                let existeProducto = productoSeleccionado.find(e => e === this.id);
+                if (!existeProducto){
+                    productosEnCarrito.push(this.id);
+                    localStorage.setItem('productosEnCarrito', JSON.stringify(productoSeleccionado));
+                }
+            });
+
+            $(".modal-body").click(function(){
+                
+            })
+
+        let productosEnCarrito = []
+        localStorage.setItem('productos', JSON.stringify(productosEnCarrito))
+
+        });
+
     </script>
 </body>
 </html>
