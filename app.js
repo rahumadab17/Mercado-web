@@ -27,7 +27,7 @@ Handlebars.registerHelper('lower', function (nombreProducto){
 
 app.get("/", (req, res) => {
     res.render("main", {
-        layout: "main",
+        layout: "Main",
         productos: [
             "Banana",
             "Cebollas",

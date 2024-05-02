@@ -21,32 +21,33 @@
     <script src="/js/jquery.js"></script>
     <script>
         $(document).ready(function(){
-            $(".producto").click(function (){
+
+            let productos = []
+
+            $(".producto img").click(function (){
                 $(this).removeClass('opacity-50');
-                let productoSeleccionado = JSON.parse(localStorage.getItem("productosEnCarrito"));
-                productoSeleccionado = productoSeleccionado.filter(e => e !== this.id);
-                localStorage.setItem('productosEnCarrito', JSON.stringify(productoSeleccionado));
+                let productoSeleccionado = this.id;
+                if (!productos.includes(productoSeleccionado)){
+                    productos.push(productoSeleccionado);
+                } 
             });
 
-            $(".producto").dblclick(function(){
+            $(".producto img").dblclick(function(){
                 $(this).addClass('opacity-50');
-                let productoSeleccionado = JSON.parse(localStorage.getItem("productosEnCarrito"));
-                let existeProducto = productoSeleccionado.find(e => e === this.id);
-                if (!existeProducto){
-                    productosEnCarrito.push(this.id);
-                    localStorage.setItem('productosEnCarrito', JSON.stringify(productoSeleccionado));
+                let productoSeleccionado = this.id;
+                let index = productos.indexOf(productoSeleccionado);
+                if (index !== -1) {
+                    productos.splice(index, 1);
                 }
             });
 
-            $(".modal-body").click(function(){
-                
-            })
-
-        let productosEnCarrito = []
-        localStorage.setItem('productos', JSON.stringify(productosEnCarrito))
-
+            $("#botonCarrito").click(function(){
+                $(".modal-body").empty();
+                productos.forEach(function(data){
+                    $(".modal-body").append(`<img src='/img/${data}.png' class='w-25'>`)
+                });
+            });
         });
-
     </script>
 </body>
 </html>
